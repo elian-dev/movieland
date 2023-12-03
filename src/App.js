@@ -15,17 +15,21 @@ const App = () => {
         const data = await GetMovies(title, page)
         const prevData = movies
 
-        if(page > 1) {
-            setMovies([...prevData, ...data.Search])
+        if(data.Response === "True") {
+            if(page > 1) {
+                setMovies([...prevData, ...data.Search])
+            } else {
+                setMovies(data.Search)
+            }
+            setMoreBotton(false)
+            
+            if(data.totalResults > 10) {
+                setMoreBotton(true)
+            }
         } else {
-            setMovies(data.Search)
+            setMovies(prevData)
         }
-        setMoreBotton(false)
         
-        if(data.totalResults > 10) {
-            setMoreBotton(true)
-        }
- 
     }
 
     useEffect(() => {
@@ -34,7 +38,7 @@ const App = () => {
 
     return (
         <main className='app'>
-            <h1>Movie Land</h1>
+            <h1>Movie App</h1>
             
             <Search 
                 search={search} 
