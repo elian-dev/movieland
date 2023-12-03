@@ -38,7 +38,7 @@ const App = () => {
 
     return (
         <main className='app'>
-            <h1>Movie App</h1>
+            <h1>MovieLand</h1>
             
             <Search 
                 search={search} 
